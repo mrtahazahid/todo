@@ -2,6 +2,7 @@ package com.tahazahid.todo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,9 +31,15 @@ class BuyActivity : AppCompatActivity() {
         buyViewModel = ViewModelProvider(this, BuyViewModelFactory(repository)).get(BuyViewModel::class.java)
 
         buyViewModel.buyList.observe(this, Observer {
-            binding.recyclerView.apply {
-                adapter = BuyListAdapter(it)
-                layoutManager = manager
+            if(it.isEmpty()){
+                binding.progressBar.visibility = View.VISIBLE
+            }
+            else{
+                binding.progressBar.visibility = View.GONE
+                binding.recyclerView.apply {
+                    adapter = BuyListAdapter(it)
+                    layoutManager = manager
+                }
             }
         })
     }
