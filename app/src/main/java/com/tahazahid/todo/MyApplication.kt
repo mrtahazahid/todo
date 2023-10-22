@@ -4,17 +4,23 @@ import android.app.Application
 import com.tahazahid.todo.api.ApiInterface
 import com.tahazahid.todo.api.ApiUtilities
 import com.tahazahid.todo.repository.BuyRepository
+import com.tahazahid.todo.repository.SellRepository
 import com.tahazahid.todo.room.SellDataBase
 
 class MyApplication : Application() {
     lateinit var apiInterface: ApiInterface
     lateinit var buyRepository: BuyRepository
+    lateinit var sellRepository: SellRepository
 
     override fun onCreate() {
         super.onCreate()
 
         apiInterface = ApiUtilities.getInstance().create(ApiInterface::class.java)
+
         val dataBase = SellDataBase.getDataBase(applicationContext)
-        buyRepository = BuyRepository(apiInterface, dataBase)
+
+        buyRepository = BuyRepository(apiInterface, dataBase, applicationContext)
+
+        sellRepository = SellRepository(apiInterface, dataBase, applicationContext)
     }
 }

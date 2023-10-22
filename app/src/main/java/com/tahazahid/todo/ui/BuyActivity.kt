@@ -11,7 +11,6 @@ import com.tahazahid.todo.adapter.BuyListAdapter
 import com.tahazahid.todo.databinding.ActivityBuyBinding
 import com.tahazahid.todo.viewmodel.BuyViewModel
 import com.tahazahid.todo.viewmodel.BuyViewModelFactory
-import com.tahazahid.todo.viewmodel.CallViewModelFactory
 
 class BuyActivity : AppCompatActivity() {
     private var _binding : ActivityBuyBinding? = null

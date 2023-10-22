@@ -31,7 +31,7 @@ class CallActivity : AppCompatActivity() {
 
         apiInterface = ApiUtilities.getInstance().create(ApiInterface::class.java)
 
-        callRepository = CallRepository(apiInterface)
+        callRepository = CallRepository(apiInterface, this)
 
         callViewModel = ViewModelProvider(this, CallViewModelFactory(callRepository)).get(CallViewModel::class.java)
 
